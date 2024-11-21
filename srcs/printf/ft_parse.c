@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 07:41:11 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 05:52:09 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:12:48 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@
  *	args:
  *		argument list
  */
-void	ft_parse(t_list *module, va_list args)
+void	__ft_parse(t_list *module, va_list args)
 {
 	t_flag	flag;
 
 	while (module)
 	{
-		flag = get_flag(((t_buff *) module->content)->data);
+		flag = __get_flag(((t_buff *) module->content)->data);
 		if (flag.conv_type)
 		{
 			ft_bufclear(module->content);
-			module->content = expend_arg(args, &flag);
+			module->content = __expend_arg(args, &flag);
 		}
 		module = module->next;
 	}
@@ -46,7 +46,7 @@ void	ft_parse(t_list *module, va_list args)
  *	token:
  *		token to get flags from
  */
-t_flag	get_flag(char *token)
+t_flag	__get_flag(char *token)
 {
 	t_flag	ret;
 	char	conv;
@@ -54,13 +54,13 @@ t_flag	get_flag(char *token)
 	conv = token[ft_strlen(token) - 1];
 	ft_bzero(&ret, sizeof(t_flag));
 	ret.precision = -1;
-	if (token[0] != '%' || !is_conversion(conv))
+	if (token[0] != '%' || !__is_conversion(conv))
 	{
 		ret.conv_type = 0;
 		return (ret);
 	}
 	ret.conv_type = conv;
-	while (is_flag(*(++token)))
+	while (__is_flag(*(++token)))
 		parse_flag(&ret, *token);
 	ret.min_width = ft_atoi(token);
 	token = ft_strnstr(token, ".", ft_strlen(token));

@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 07:42:03 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 05:52:09 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:13:05 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  *	token:
  *		token list to transform in string
  */
-t_buff	*ft_stringify(t_list *token)
+t_buff	*__ft_stringify(t_list *token)
 {
 	t_buff	*ret;
 	t_buff	*tmp;

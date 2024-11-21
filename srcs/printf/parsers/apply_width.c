@@ -3,20 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   apply_width.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 09:03:34 by bguyot            #+#    #+#             */
-/*   Updated: 2022/12/06 09:24:55 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:08:25 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/_ft_printf.h"
+#include "_ft_printf.h"
+
+t_buff	concat_segment(t_buff segment[5]);
+void	create_sign(t_buff segment[5], t_flag *flag);
+void	create_padding(t_buff segment[5], t_flag *flag, int padding_space);
 
 /*
  *	[padding spaces][sign symbole][0 padding][mainstr][left padding space]
  *			4				3			2		1			0
  */
-void	apply_width(t_buff *buff, t_flag *flag)
+void	__apply_width(t_buff *buff, t_flag *flag)
 {
 	t_buff	segment[5];
 	t_buff	ret;
@@ -36,6 +40,7 @@ void	apply_width(t_buff *buff, t_flag *flag)
 	buff->len = ret.len;
 }
 
+static
 t_buff	concat_segment(t_buff segment[5])
 {
 	t_buff	ret;
@@ -56,6 +61,7 @@ t_buff	concat_segment(t_buff segment[5])
 	return (ret);
 }
 
+static
 void	create_padding(t_buff segment[5], t_flag *flag, int padding_space)
 {
 	ft_bzero(&segment[0], sizeof (t_buff));
@@ -83,6 +89,7 @@ void	create_padding(t_buff segment[5], t_flag *flag, int padding_space)
 	}
 }
 
+static
 void	create_sign(t_buff segment[5], t_flag *flag)
 {
 	segment[3].data = NULL;

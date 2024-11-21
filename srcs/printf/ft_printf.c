@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:47:50 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 05:52:09 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:13:05 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	ft_printf(const char *ft_format, ...)
 	if (!ft_strlen(ft_format))
 		return (0);
 	va_start(args, ft_format);
-	module = ft_split_module(ft_format);
-	ft_parse(module, args);
-	out = ft_stringify(module);
+	module = __ft_split_module(ft_format);
+	__ft_parse(module, args);
+	out = __ft_stringify(module);
 	ft_lstclear(&module, *ft_bufclear);
 	write(1, out->data, out->len);
 	ret = out->len;

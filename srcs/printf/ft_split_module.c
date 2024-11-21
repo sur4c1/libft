@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 07:41:42 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 05:52:09 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:12:59 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  *		returned value:	["bla bla bla "]->["%s"]->[" "]->["%-3d"]->[" bla bla"]
  *							->["%%"]->["%x"]->["%%"]
  */
-t_list	*ft_split_module(const char *beg_str)
+t_list	*__ft_split_module(const char *beg_str)
 {
 	const char	*end_str;
 	t_list		*ret;
@@ -37,7 +37,7 @@ t_list	*ft_split_module(const char *beg_str)
 	while (*end_str)
 	{
 		if (
-			(in_flag && end_str != beg_str && is_conversion(*end_str))
+			(in_flag && end_str != beg_str && __is_conversion(*end_str))
 			|| (!in_flag && (*(end_str + 1) == '%' || *(end_str + 1) == '\0'))
 		)
 		{

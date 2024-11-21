@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   great_x.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 08:49:35 by bguyot            #+#    #+#             */
-/*   Updated: 2022/12/06 12:56:28 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:09:11 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/_ft_printf.h"
+#include "_ft_printf.h"
 
-t_buff	*great_x(va_list lst, t_flag *flag)
+t_buff	*__great_x(va_list lst, t_flag *flag)
 {
 	t_buff			*ret;
 	unsigned int	data;

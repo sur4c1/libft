@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   d.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 08:48:18 by bguyot            #+#    #+#             */
-/*   Updated: 2022/12/06 12:54:46 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:10:57 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/_ft_printf.h"
+#include "_ft_printf.h"
 
-t_buff	*d(va_list lst, t_flag *flag)
+t_buff	*__d(va_list lst, t_flag *flag)
 {
 	t_buff	*ret;
 	int		data;
@@ -27,7 +27,7 @@ t_buff	*d(va_list lst, t_flag *flag)
 		free(ret->data);
 		ret->data = tmp;
 	}
-	update_flag(flag, data, ret);
+	__update_flag(flag, data, ret);
 	if (data == 0 && flag->precision == 0)
 	{
 		tmp = ft_strdup("");

@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   update_flag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 09:27:34 by bguyot            #+#    #+#             */
-/*   Updated: 2022/12/06 12:44:01 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:11:10 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/_ft_printf.h"
+#include "_ft_printf.h"
 
-void	update_flag(t_flag *flag, int data, t_buff *ret)
+void	update_zero_flag(t_flag *flag, t_buff *ret);
+
+void	__update_flag(t_flag *flag, int data, t_buff *ret)
 {
 	flag->sign = ft_sign(data);
 	if (!data)
@@ -22,6 +24,7 @@ void	update_flag(t_flag *flag, int data, t_buff *ret)
 	update_zero_flag(flag, ret);
 }
 
+static
 void	update_zero_flag(t_flag *flag, t_buff *ret)
 {
 	if (flag->precision >= 0)

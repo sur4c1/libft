@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _ft_printf.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 07:34:46 by bguyot            #+#    #+#             */
-/*   Updated: 2022/12/06 13:30:58 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:13:05 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,35 +50,35 @@ typedef	t_buff	*(t_parse)(va_list, t_flag*);
 /*
  *	FT_PARSE
  */
-void	ft_parse(t_list *module, va_list args);
-t_flag	get_flag(char *token);
+void	__ft_parse(t_list *module, va_list args);
+t_flag	__get_flag(char *token);
 void	parse_flag(t_flag *flag_struct, char flag_char);
 
 /*
  *	EXPEND_ARG
  */
-t_buff	*expend_arg(va_list args, t_flag *flag);
-t_buff	*u(va_list args, t_flag *flag);
-t_buff	*x(va_list args, t_flag *flag);
-t_buff	*i(va_list args, t_flag *flag);
-t_buff	*p(va_list args, t_flag *flag);
-t_buff	*d(va_list args, t_flag *flag);
-t_buff	*s(va_list args, t_flag *flag);
-t_buff	*c(va_list args, t_flag *flag);
-t_buff	*f(va_list args, t_flag *flag);
-t_buff	*percent(va_list args, t_flag *flag);
-t_buff	*great_x(va_list args, t_flag *flag);
-void	apply_width(t_buff *str, t_flag *flag);
+t_buff	*__expend_arg(va_list args, t_flag *flag);
+t_buff	*__u(va_list args, t_flag *flag);
+t_buff	*__x(va_list args, t_flag *flag);
+t_buff	*__i(va_list args, t_flag *flag);
+t_buff	*__p(va_list args, t_flag *flag);
+t_buff	*__d(va_list args, t_flag *flag);
+t_buff	*__s(va_list args, t_flag *flag);
+t_buff	*__c(va_list args, t_flag *flag);
+t_buff	*__f(va_list args, t_flag *flag);
+t_buff	*__percent(va_list args, t_flag *flag);
+t_buff	*__great_x(va_list args, t_flag *flag);
+void	__apply_width(t_buff *str, t_flag *flag);
 void	create_padding(t_buff segment[5], t_flag *flag, int padding_space);
 void	create_sign(t_buff segment[5], t_flag *flag);
 t_buff	concat_segment(t_buff segment[5]);
-void	update_flag(t_flag *flag, int data, t_buff *ret);
+void	__update_flag(t_flag *flag, int data, t_buff *ret);
 void	update_zero_flag(t_flag *flag, t_buff *ret);
 
 /*
  *	FT_SPLIT_MODULE
  */
-t_list	*ft_split_module(const char *ft_format);
+t_list	*__ft_split_module(const char *ft_format);
 void	add_buffer_to_list(
 			t_list **lst,
 			const char *beg_str,
@@ -88,13 +88,13 @@ void	add_buffer_to_list(
 /*
  *	FT_STRINGIFY
  */
-t_buff	*ft_stringify(t_list *token);
+t_buff	*__ft_stringify(t_list *token);
 
 /*
  *	CHECKERS
  */
-int		is_conversion(char to_check);
-int		is_flag(char to_check);
+int		__is_conversion(char to_check);
+int		__is_flag(char to_check);
 
 /*
  *	FREE_BUFF

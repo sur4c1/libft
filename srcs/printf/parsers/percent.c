@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   percent.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 08:50:15 by bguyot            #+#    #+#             */
-/*   Updated: 2022/12/06 10:03:14 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:10:22 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/_ft_printf.h"
+#include "_ft_printf.h"
 
-t_buff	*percent(va_list lst, t_flag *flag)
+t_buff	*__percent(va_list lst, t_flag *flag)
 {
 	t_buff	*ret;
 	char	*data;

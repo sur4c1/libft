@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   c.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 08:02:03 by bguyot            #+#    #+#             */
-/*   Updated: 2022/12/02 17:25:34 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:08:44 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/_ft_printf.h"
+#include "_ft_printf.h"
 
-t_buff	*c(va_list lst, t_flag *flag)
+t_buff	*__c(va_list lst, t_flag *flag)
 {
 	t_buff	*ret;
 	char	data;

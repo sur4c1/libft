@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 09:33:28 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 05:52:09 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:11:50 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  *	to_check:
  *		the char to check
  */
-int	is_conversion(char to_check)
+int	__is_conversion(char to_check)
 {
 	return ((ft_strchr(FT_CONVERSIONS, to_check) != NULL));
 }
@@ -33,7 +33,7 @@ int	is_conversion(char to_check)
  *	to_check:
  *		the char to check
  */
-int	is_flag(char to_check)
+int	__is_flag(char to_check)
 {
 	return (ft_strchr(FT_FLAGS, to_check) != NULL);
 }
