@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 13:24:47 by bguyot            #+#    #+#             */
-/*   Updated: 2022/12/01 07:56:46 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/11/21 06:14:32 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include "inc/ft_arr.h"
-# include "inc/ft_cast.h"
-# include "inc/ft_check.h"
-# include "inc/get_next_line.h"
-# include "inc/ft_math.h"
-# include "inc/ft_memory.h"
-# include "inc/ft_put.h"
-# include "inc/ft_string.h"
-# include "inc/ft_list.h"
-# include "inc/ft_buff.h"
-# include "inc/ft_printf.h"
+# include "ft_arr.h"
+# include "ft_cast.h"
+# include "ft_check.h"
+# include "get_next_line.h"
+# include "ft_math.h"
+# include "ft_memory.h"
+# include "ft_put.h"
+# include "ft_string.h"
+# include "ft_list.h"
+# include "ft_buff.h"
+# include "ft_printf.h"
 
 #endif
