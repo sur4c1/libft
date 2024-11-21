@@ -6,13 +6,11 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 09:27:34 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 06:11:10 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:57:53 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_ft_printf.h"
-
-void	update_zero_flag(t_flag *flag, t_buff *ret);
 
 void	__update_flag(t_flag *flag, int data, t_buff *ret)
 {
@@ -21,11 +19,10 @@ void	__update_flag(t_flag *flag, int data, t_buff *ret)
 		flag->sign = 1;
 	if (data >= 0 && !flag->positive_sign)
 		flag->sign = 0;
-	update_zero_flag(flag, ret);
+	__update_zero_flag(flag, ret);
 }
 
-static
-void	update_zero_flag(t_flag *flag, t_buff *ret)
+void	__update_zero_flag(t_flag *flag, t_buff *ret)
 {
 	if (flag->precision >= 0)
 	{

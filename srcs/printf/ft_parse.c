@@ -6,12 +6,16 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 07:41:11 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 06:12:48 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:53:37 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_ft_printf.h"
 
+static
+t_flag	get_flag(char *token);
+static
+void	parse_flag(t_flag *flag, char c);
 /*
  *	ft_parse
  *
@@ -28,7 +32,7 @@ void	__ft_parse(t_list *module, va_list args)
 
 	while (module)
 	{
-		flag = __get_flag(((t_buff *) module->content)->data);
+		flag = get_flag(((t_buff *) module->content)->data);
 		if (flag.conv_type)
 		{
 			ft_bufclear(module->content);
@@ -46,7 +50,8 @@ void	__ft_parse(t_list *module, va_list args)
  *	token:
  *		token to get flags from
  */
-t_flag	__get_flag(char *token)
+static
+t_flag	get_flag(char *token)
 {
 	t_flag	ret;
 	char	conv;
@@ -79,6 +84,7 @@ t_flag	__get_flag(char *token)
  *	c:
  *		character to calculate for
  */
+static
 void	parse_flag(t_flag *flag, char c)
 {
 	if (c == '#')

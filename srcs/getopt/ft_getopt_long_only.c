@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_getopt_long_only.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/23 13:24:47 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 13:00:17 by yyyyyy           ###   ########.fr       */
+/*   Created: 2024/11/21 09:54:45 by yyyyyy            #+#    #+#             */
+/*   Updated: 2024/11/21 09:56:10 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_getopt.h"
 
-# include "ft_arr.h"
-# include "ft_cast.h"
-# include "ft_check.h"
-# include "ft_gnl.h"
-# include "ft_math.h"
-# include "ft_memory.h"
-# include "ft_put.h"
-# include "ft_string.h"
-# include "ft_list.h"
-# include "ft_buff.h"
-# include "ft_printf.h"
-# include "ft_getopt.h"
-
-#endif
+int		ft_getopt_long_only(
+	int argc,
+	char *const argv[],
+	const char *optstring,
+	const t_option *longopts,
+	int *longindex
+)
+{
+	return ft_getopt_long(argc, argv, "", longopts, longindex);
+	(void) optstring;
+}

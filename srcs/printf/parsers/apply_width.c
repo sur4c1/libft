@@ -6,14 +6,17 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 09:03:34 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 06:08:25 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:49:49 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_ft_printf.h"
 
+static
 t_buff	concat_segment(t_buff segment[5]);
+static
 void	create_sign(t_buff segment[5], t_flag *flag);
+static
 void	create_padding(t_buff segment[5], t_flag *flag, int padding_space);
 
 /*

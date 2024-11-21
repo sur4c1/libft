@@ -6,12 +6,18 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 07:41:42 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 06:12:59 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:56:06 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_ft_printf.h"
 
+static
+void	add_buffer_to_list(
+			t_list **lst,
+			const char *beg_str,
+			const char *end_str
+			);
 /*
  *	ft_split_module:
  *
@@ -50,6 +56,7 @@ t_list	*__ft_split_module(const char *beg_str)
 	return (ret);
 }
 
+static
 void	add_buffer_to_list(
 			t_list **lst,
 			const char *beg_str,

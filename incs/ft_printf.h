@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:43:37 by bguyot            #+#    #+#             */
-/*   Updated: 2022/12/06 08:26:10 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:34:46 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@
 
 int		ft_printf(const char *str, ...)
 		__attribute__ ((format (printf, 1, 2)));
+int		ft_dprintf(int fd, const char *str, ...)
+		__attribute__ ((format (printf, 2, 3)));
 
 #endif

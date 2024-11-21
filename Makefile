@@ -6,7 +6,7 @@
 #    By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:24:40 by bguyot            #+#    #+#              #
-#    Updated: 2024/11/21 06:06:59 by yyyyyy           ###   ########.fr        #
+#    Updated: 2024/11/21 12:45:51 by yyyyyy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,16 +63,20 @@ FILES_GNL		=	gnl
 FT_GNL			=	$(addprefix $(DIR)ft_, $(FILES))
 
 DIR_PRITNF		=	printf/
-FILES_PRINTF	=	printf	ft_parse	ft_split_module	ft_stringify	checkers\
+FILES_PRINTF	=	ft_printf	ft_parse	ft_split_module	ft_stringify	checkers\
 					expend_arg	parsers/c	parsers/d	parsers/great_x			\
 					parsers/i	parsers/p	parsers/percent	parsers/s			\
 					parsers/u	parsers/x	parsers/f	parsers/apply_width		\
 					parsers/update_flag
-FT_PRINTF		=	$(addprefix $(DIR)ft_, $(FILES))
+FT_PRINTF		=	$(addprefix $(DIR_PRITNF), $(FILES_PRINTF))
+
+DIR_GETOPT		=	getopt/
+FILES_GETOPT	=	getopt	getopt_long	getopt_long_only
+FT_GETOPT		=	$(addprefix $(DIR_GETOPT)ft_, $(FILES_GETOPT))
 
 SRCS 			=	$(FT_ARR)	$(FT_CAST)	$(FT_CHECK)	$(FT_LIST)	$(FT_MATH)	\
 					$(FT_MEMORY) $(FT_PUT)	$(FT_STRING)	$(FT_GNL)			\
-					$(FT_BUFF)	$(FT_PRINTF)
+					$(FT_BUFF)	$(FT_PRINTF)	$(FT_GETOPT)
 
 OBJS 			=	$(addprefix $(OBJDIR), $(addsuffix .o, $(SRCS)))
 
