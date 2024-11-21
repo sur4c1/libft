@@ -1,5 +1,2 @@
-*.a
-*.o
-libftTester
-pft/
-.DS_Store
+libft.a
+objs/
