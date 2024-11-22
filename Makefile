@@ -6,7 +6,7 @@
 #    By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:24:40 by bguyot            #+#    #+#              #
-#    Updated: 2024/11/21 12:45:51 by yyyyyy           ###   ########.fr        #
+#    Updated: 2024/11/22 16:40:22 by yyyyyy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ OBJS 			=	$(addprefix $(OBJDIR), $(addsuffix .o, $(SRCS)))
 
 CC				=	@gcc
 RM				=	@rm -rf
-CFLAGS			=	-Wall -Wextra -Werror -I $(INCDIR)
+CFLAGS			=	-Wall -Wextra -Werror -I $(INCDIR) -g3
 
 OBJ_COLOR		=	"\e[38;5;147m"
 CLN_COLOR		=	"\e[38;5;124m"

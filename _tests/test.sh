@@ -1,5 +1,4 @@
-cc test.c -I ../incs -L .. -lft -o og
-cc test.c -I ../incs -L .. -lft -o ft -DFT
-
-echo $@
-diff <(./og $@) <(./ft $@) --side-by-side --color=always
+make -C .. &&
+	cc test.c -I ../incs -L .. -lft -o og -fsanitize=address &&
+	cc test.c -I ../incs -L .. -lft -o ft -DFT -fsanitize=address &&
+	diff <(./og $@) <(./ft $@) --side-by-side --color=always

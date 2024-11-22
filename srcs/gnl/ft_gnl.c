@@ -6,11 +6,11 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 09:25:13 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 05:52:09 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/22 14:20:27 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "ft_gnl.h"
 
 static char	*return_value(char	*res);
 static void	init(t_gnl *gnl);

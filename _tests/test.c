@@ -5,6 +5,10 @@
 
 #ifdef FT
 #define f(argc, argv, optstring) ft_getopt_long(argc, argv, optstring, NULL, NULL)
+#define optind ft_optind
+#define optopt ft_optopt
+#define optarg ft_optarg
+#define opterr ft_opterr
 #else
 #define f(argc, argv, optstring) getopt_long(argc, argv, optstring, NULL, NULL)
 #define FT -1
@@ -19,14 +23,31 @@ void print(int argc, char**argv)
 		printf("]\n");
 }
 
-int test(int argc, char**argv)
+int	test(int argc, char**argv)
 {
-		int ret;
+	static int i = 0;
+	int ret;
 
-		ret = f(argc, argv, "abc:d:012");
-		printf("ret value = %d, ret char = %c, optind = %d, optopt value = %d, optopt char = %c", ret, ret, optind, optopt, optopt);
-		print(argc, argv);
-		return ret;
+	ret = f(argc, argv, "abc:d:012");
+	printf("\n CALL %d\n", i++);
+	printf("ret=%d", ret);
+	if (ft_isprint(ret))
+		printf(" (%c)", ret);
+	else if (ret == -1)
+		printf(" (EOF)");
+	else
+		printf(" (.)");
+	printf("\n");
+	printf("optind=%d\n", optind);
+	printf("optopt=%d", optopt);
+	if (ft_isprint(optopt))
+		printf(" (%c)", optopt);
+	else
+		printf(" (.)");
+	printf("\n");
+	printf("optarg=%s\n", optarg);
+	print(argc, argv);
+	return ret;
 }
 
 
@@ -35,7 +56,7 @@ int main (int argc, char **argv) {
 	print(argc, argv);
 	opterr = 0;
 	while (test(argc, argv) != -1)
-			;
+		;
 	print(argc, argv);
 	exit (0);
 }
