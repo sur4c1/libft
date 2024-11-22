@@ -34,12 +34,12 @@ t_bool	is_option(str arg)
 // }
 
 // static
-// void	move_to_front(char *const argv[])
+// void	move_to_front(char *const argv[], int i)
 // {
-// 	while (ft_optind > 1 && !is_option(argv[ft_optind - 1]))
+// 	while (i > 1 && !is_option(argv[i - 1]))
 // 	{
-// 		swap_args(argv, ft_optind, ft_optind - 1);
-// 		ft_optind--;
+// 		swap_args(argv, i, i - 1);
+// 		i--;
 // 	}
 // }
 
@@ -172,13 +172,14 @@ int		ft_getopt_long(
 {
 	const t_option	*longopt;
 	static int		nextshrt = 1;
+	static int		prevind = 1;
+	static t_bool	prevopt = FALSE;
 
 	ft_optarg = NULL;
 	while (ft_optind < argc && !is_option(argv[ft_optind]))
 		ft_optind++;
 	if (ft_optind >= argc)
 		return -1;
-	// move_to_front(argv);
 	if (ft_strcmp(argv[ft_optind], "--") == 0)
 	{
 		ft_optind++;
