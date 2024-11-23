@@ -1,7 +1,7 @@
 #include <stdio.h>     /* for printf */
 #include <stdlib.h>    /* for exit */
 #include <getopt.h>    /* for getopt_long; POSIX standard getopt is in unistd.h */
-#include "../libft.h"
+#include "../../libft.h"
 
 #ifdef FT
 #define f(argc, argv, optstring, longopst, longindex) ft_getopt_long(argc, argv, optstring, longopts, longindex)
@@ -31,8 +31,10 @@ int	test(int argc, char**argv)
 	int longindex = 0;
 	t_option longopts[] =
 	{
-		{"abc", no_argument, 0, 0},
-		{"def", required_argument, 0, 0},
+		{"abc", no_argument, 0, 'a'},
+		{"def", required_argument, 0, 'd'},
+		{"ambiguous", no_argument, 0, 'A'},
+		{"ambigueux", no_argument, 0, 'B'},
 		{0, 0, 0, 0}
 	};
 
@@ -54,6 +56,7 @@ int	test(int argc, char**argv)
 		printf(" (.)");
 	printf("\n");
 	printf("optarg=%s\n", optarg);
+	printf("longindex=%d\n", longindex);
 	print(argc, argv);
 	return ret;
 }

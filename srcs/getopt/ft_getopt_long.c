@@ -132,26 +132,29 @@ const t_option	*longparse(
 			{
 				if (ft_opterr)
 					ft_printf("%s: option '--%s' is ambiguous\n", argv[0], opt);
+				*longindex = 0;
 				return NULL;
 			}
 			*longindex = i;
 		}
+		i++;
 	}
 	if (*longindex == -1)
 	{
 		if (ft_opterr)
 			ft_printf("%s: option '--%s' not recognized\n", argv[0], opt);
+		*longindex = 0;
 		return NULL;
 	}
-	ft_optarg = ft_strchr(opt, '=') + 1;
-	if (ft_optarg && longopts[*longindex].has_arg == no_argument)
+	ft_optarg = ft_strchr(opt, '=');
+	if (ft_optarg && longopts[*longindex].has_arg == no_argument && ft_opterr)
+		ft_printf("%s: option '--%s' doesn't allow an argument\n", argv[0], opt);
+	if (ft_optarg || longopts[*longindex].has_arg == no_argument)
 	{
-		if (ft_opterr)
-			ft_printf("%s: option '--%s' doesn't allow an argument\n", argv[0], opt);
+		if (ft_optarg)
+			ft_optarg++;
 		return longopts + *longindex;
 	}
-	if (ft_optarg || longopts[*longindex].has_arg == no_argument)
-		return longopts + *longindex;
 	if (ft_optind >= argc)
 	{
 		if (ft_opterr)
