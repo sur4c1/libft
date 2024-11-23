@@ -38,7 +38,7 @@ int	test(int argc, char**argv)
 		{0, 0, 0, 0}
 	};
 
-	ret = f(argc, argv, "abc:d:012", longopts, &longindex);
+	ret = f(argc, argv, "abc:d:012?", longopts, &longindex);
 	printf("\n CALL %d\n", i++);
 	printf("ret=%d", ret);
 	if (ft_isprint(ret))

@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 06:14:48 by yyyyyy            #+#    #+#             */
-/*   Updated: 2024/11/22 16:22:19 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/23 14:46:18 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,12 @@ typedef enum e_ret
 	SUCCESS,
 	FAILURE
 }	t_ret;
+
+typedef enum e_error
+{
+	OK,
+	ERROR,
+	UKNOWN_OPTION
+}	t_error;
 
 typedef int t_fd;
