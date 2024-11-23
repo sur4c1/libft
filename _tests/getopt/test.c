@@ -4,14 +4,15 @@
 #include "../libft.h"
 
 #ifdef FT
-#define f(argc, argv, optstring) ft_getopt_long(argc, argv, optstring, NULL, NULL)
+#define f(argc, argv, optstring, longopst, longindex) ft_getopt_long(argc, argv, optstring, longopts, longindex)
 #define optind ft_optind
 #define optopt ft_optopt
 #define optarg ft_optarg
 #define opterr ft_opterr
 #else
-#define f(argc, argv, optstring) getopt_long(argc, argv, optstring, NULL, NULL)
+#define f(argc, argv, optstring, longopst, longindex) getopt_long(argc, argv, optstring, longopts, longindex)
 #define FT -1
+#define t_option struct option
 #endif
 
 void print(int argc, char**argv)
@@ -27,8 +28,15 @@ int	test(int argc, char**argv)
 {
 	static int i = 0;
 	int ret;
+	int longindex = 0;
+	t_option longopts[] =
+	{
+		{"abc", no_argument, 0, 0},
+		{"def", required_argument, 0, 0},
+		{0, 0, 0, 0}
+	};
 
-	ret = f(argc, argv, "abc:d:012");
+	ret = f(argc, argv, "abc:d:012", longopts, &longindex);
 	printf("\n CALL %d\n", i++);
 	printf("ret=%d", ret);
 	if (ft_isprint(ret))

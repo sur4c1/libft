@@ -51,47 +51,47 @@ int		shortparse(
 	int *nextshrt
 )
 {
-	char		*opt;
-	char		*shorts;
-	char		ret;
+	int		optindex;
+	int		shrtindex;
+	char	*opt;
 
-	shorts = argv[ft_optind];
-	ret = shorts[(*nextshrt)++];
-	if (!shorts[*nextshrt])
+	optindex = ft_optind;
+	shrtindex = (*nextshrt)++;
+	if (!argv[optindex][*nextshrt])
 	{
 		ft_optind++;
 		*nextshrt = 1;
 	}
-	opt = ft_strchr(optstring, ret);
+	opt = ft_strchr(optstring, argv[optindex][shrtindex]);
 	if (!opt)
 	{
 		if (ft_opterr)
-			ft_printf("%s: invalid option -- %c\n", argv[0], ret);
-		ft_optopt = ret;
+			ft_printf("%s: invalid option -- %c\n", argv[0], argv[optindex][shrtindex]);
+		ft_optopt = argv[optindex][shrtindex];
 		return '?';
 	}
 	if (opt[1] == ':')
 	{
-		if (shorts[*nextshrt])
+		if (argv[optindex][shrtindex + 1])
 		{
-			ft_optarg = shorts + *nextshrt;
-			ft_optind++;
+			ft_optarg = argv[optindex] + shrtindex + 1;
+			ft_optind = optindex + 1;
 		}
 		else if (ft_optind < argc)
 		{
 			ft_optarg = argv[ft_optind];
-			ft_optind += 2;
+			ft_optind = optindex + 2;
 		}
 		else
 		{
 			if (ft_opterr)
-				ft_printf("%s: option requires an argument -- %c\n", argv[0], ret);
-			ft_optopt = ret;
+				ft_printf("%s: option requires an argument -- %c\n", argv[0], argv[optindex][shrtindex]);
+			ft_optopt = argv[optindex][shrtindex];
 			return '?';
 		}
 		*nextshrt = 1;
 	}
-	return ret;
+	return argv[optindex][shrtindex];
 }
 
 static
@@ -192,7 +192,7 @@ int		ft_getopt_long(
 	if (ft_strcmp(argv[ft_optind], "--") == 0)
 	{
 		move_front(argv, ft_optind, nb_put_to_left++);
-		ft_optind = nb_put_to_left;
+		ft_optind = nb_put_to_left + 1;
 		return -1;
 	}
 	if (longopts && ft_strncmp(argv[ft_optind], "--", 2) == 0)
