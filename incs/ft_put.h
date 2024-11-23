@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 08:49:24 by bguyot            #+#    #+#             */
-/*   Updated: 2022/11/28 09:48:13 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/11/23 15:59:24 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,11 @@ void	ft_putnbr_fd(int n, int fd);
 
 /* Write all the string of tab (NULL terminated) into fd */
 void	ft_puttab_fd(char **tab, int fd);
+
+/**
+ * @brief Write the data of size size in the given fd
+ * @note The data is printed in hexadecimal and ascii
+ */
+void	ft_putdata_fd(void *data, size_t size, int fd);
 
 #endif

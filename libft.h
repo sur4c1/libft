@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 13:24:47 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/23 16:15:31 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/23 15:53:38 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@
 # include "incs/ft_buff.h"
 # include "incs/ft_printf.h"
 # include "incs/ft_getopt.h"
+# include "incs/ft_types.h"
+# include "incs/ft_def.h"
 
 #endif
