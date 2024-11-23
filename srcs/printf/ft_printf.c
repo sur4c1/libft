@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:47:50 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 12:34:11 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/23 13:05:25 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	ft_dprintf(int fd, const char *ft_format, ...)
 	module = __ft_split_module(ft_format);
 	__ft_parse(module, args);
 	out = __ft_stringify(module);
+	ft_lstclear(&module, *ft_bufclear);
 	write(fd, out->data, out->len);
 	ret = out->len;
 	ft_bufclear(out);

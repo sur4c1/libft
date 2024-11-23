@@ -23,25 +23,31 @@ t_bool	is_option(str arg)
 	return arg[0] == '-' && ft_strcmp(arg, "-");
 }
 
-// static
-// void	swap_args(char *const argv[], int i, int j)
-// {
-// 	char	*tmp;
+static
+void	swap_args(char *const argv[], int i, int j)
+{
+	char	*tmp;
 
-// 	tmp = argv[i];
-// 	((char **) argv)[i] = argv[j];
-// 	((char **) argv)[j] = tmp;
-// }
+	tmp = argv[i];
+	((char **) argv)[i] = argv[j];
+	((char **) argv)[j] = tmp;
+}
 
-// static
-// void	move_to_front(char *const argv[], int i)
-// {
-// 	while (i > 1 && !is_option(argv[i - 1]))
-// 	{
-// 		swap_args(argv, i, i - 1);
-// 		i--;
-// 	}
-// }
+static
+void	move_front(char *const argv[], int elemind, int nb_skipped)
+{
+	int	i;
+
+	ft_dprintf(2, "elemind: %d\n", elemind);
+	ft_dprintf(2, "nb_skipped: %d\n", nb_skipped);
+	i = 0;
+	while (i < nb_skipped && elemind > 1)
+	{
+		swap_args(argv, elemind, elemind - 1);
+		elemind--;
+		i++;
+	}
+}
 
 static
 int		shortparse(
@@ -173,11 +179,18 @@ int		ft_getopt_long(
 	const t_option	*longopt;
 	static int		nextshrt = 1;
 	static int		prevind = 1;
-	static t_bool	prevopt = FALSE;
+	static int		nb_skipped = 0;
 
 	ft_optarg = NULL;
+	while (prevind < ft_optind)
+		move_front(argv, prevind++, nb_skipped);
+	nb_skipped = 0;
 	while (ft_optind < argc && !is_option(argv[ft_optind]))
+	{
 		ft_optind++;
+		nb_skipped++;
+	}
+	prevind = ft_optind;
 	if (ft_optind >= argc)
 		return -1;
 	if (ft_strcmp(argv[ft_optind], "--") == 0)
