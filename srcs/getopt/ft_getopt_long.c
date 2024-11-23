@@ -34,18 +34,12 @@ void	swap_args(char *const argv[], int i, int j)
 }
 
 static
-void	move_front(char *const argv[], int elemind, int nb_skipped)
+void	move_front(char *const argv[], int elemind, int nb_put_to_left)
 {
-	int	i;
-
-	ft_dprintf(2, "elemind: %d\n", elemind);
-	ft_dprintf(2, "nb_skipped: %d\n", nb_skipped);
-	i = 0;
-	while (i < nb_skipped && elemind > 1)
+	while (elemind > nb_put_to_left + 1)
 	{
 		swap_args(argv, elemind, elemind - 1);
 		elemind--;
-		i++;
 	}
 }
 
@@ -178,24 +172,27 @@ int		ft_getopt_long(
 {
 	const t_option	*longopt;
 	static int		nextshrt = 1;
-	static int		prevind = 1;
-	static int		nb_skipped = 0;
+	static int		prevind = 0;
+	static int		nb_put_to_left = 0;
 
 	ft_optarg = NULL;
+	if (prevind)
+		while (prevind < ft_optind)
+			move_front(argv, prevind++, nb_put_to_left++);
 	while (prevind < ft_optind)
-		move_front(argv, prevind++, nb_skipped);
-	nb_skipped = 0;
+		move_front(argv, prevind++, nb_put_to_left);
 	while (ft_optind < argc && !is_option(argv[ft_optind]))
-	{
 		ft_optind++;
-		nb_skipped++;
-	}
 	prevind = ft_optind;
 	if (ft_optind >= argc)
+	{
+		ft_optind = nb_put_to_left + 1;
 		return -1;
+	}
 	if (ft_strcmp(argv[ft_optind], "--") == 0)
 	{
-		ft_optind++;
+		move_front(argv, ft_optind, nb_put_to_left++);
+		ft_optind = nb_put_to_left;
 		return -1;
 	}
 	if (longopts && ft_strncmp(argv[ft_optind], "--", 2) == 0)
