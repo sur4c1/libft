@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 06:14:48 by yyyyyy            #+#    #+#             */
-/*   Updated: 2024/11/23 14:46:18 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/25 05:05:44 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ typedef enum e_error
 {
 	OK,
 	ERROR,
-	UKNOWN_OPTION
+	UKNOWN_OPTION,
+	UKNOWN_HOST
 }	t_error;
 
 typedef int t_fd;

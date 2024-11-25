@@ -6,7 +6,7 @@
 #    By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:24:40 by bguyot            #+#    #+#              #
-#    Updated: 2024/11/22 16:40:22 by yyyyyy           ###   ########.fr        #
+#    Updated: 2024/11/25 06:00:10 by yyyyyy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,9 @@ FILES_GNL		=	gnl
 FT_GNL			=	$(addprefix $(DIR)ft_, $(FILES))
 
 DIR_PRITNF		=	printf/
-FILES_PRINTF	=	ft_printf	ft_parse	ft_split_module	ft_stringify	checkers\
-					expend_arg	parsers/c	parsers/d	parsers/great_x			\
+FILES_PRINTF	=	ft_printf	ft_parse	ft_split_module	ft_stringify		\
+					checkers	expend_arg	parsers/c	parsers/d				\
+					parsers/great_x			\
 					parsers/i	parsers/p	parsers/percent	parsers/s			\
 					parsers/u	parsers/x	parsers/f	parsers/apply_width		\
 					parsers/update_flag
@@ -74,9 +75,13 @@ DIR_GETOPT		=	getopt/
 FILES_GETOPT	=	getopt	getopt_long	getopt_long_only
 FT_GETOPT		=	$(addprefix $(DIR_GETOPT)ft_, $(FILES_GETOPT))
 
+DIR_GLOBALS		=	globals/
+FILES_GLOBALS	=	globals
+FT_GLOBALS		=	$(addprefix $(DIR_GLOBALS)ft_, $(FILES_GLOBALS))
+
 SRCS 			=	$(FT_ARR)	$(FT_CAST)	$(FT_CHECK)	$(FT_LIST)	$(FT_MATH)	\
 					$(FT_MEMORY) $(FT_PUT)	$(FT_STRING)	$(FT_GNL)			\
-					$(FT_BUFF)	$(FT_PRINTF)	$(FT_GETOPT)
+					$(FT_BUFF)	$(FT_PRINTF)	$(FT_GETOPT)	$(FT_GLOBALS)
 
 OBJS 			=	$(addprefix $(OBJDIR), $(addsuffix .o, $(SRCS)))
 
@@ -101,7 +106,7 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 	@printf $(ERRASE_LINE)$(OBJ_COLOR)"\t"$@"\e[0m"
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJDIR)
 	@printf $(CLN_COLOR)"\tclean "$(NAME)" objects\t\t[ ✓ ]\n\e[0m"
 
 fclean: clean
@@ -110,4 +115,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+echo:
+	@echo $(OBJS)
+
+.PHONY:	all clean fclean re echo
