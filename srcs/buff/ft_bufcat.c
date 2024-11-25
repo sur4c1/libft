@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 08:01:53 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 05:52:09 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/25 13:39:04 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,18 @@
 #include <stdio.h>
 #include <unistd.h>
 
-t_buff	*ft_bufcat(t_buff *a, t_buff *b)
+t_buff	ft_bufcat(t_buff a, t_buff b)
 {
-	t_buff	*ret;
+	t_buff	ret;
 
-	ret = ft_calloc(1, sizeof (t_buff));
-	if (!a && !b)
+	ret.data = malloc(a.len + b.len);
+	if (!ret.data)
 	{
-		ret->data = ft_memcat(NULL, NULL, 0, 0);
-		ret->len = 0;
+		ret.len = 0;
+		return (ret);
 	}
-	else if (!a)
-	{
-		ret->data = ft_memcat(NULL, b->data, 0, b->len);
-		ret->len = 0 + b->len;
-	}
-	else if (!b)
-	{
-		ret->data = ft_memcat(a->data, NULL, a->len, 0);
-		ret->len = a->len + 0;
-	}
-	else
-	{
-		ret->data = ft_memcat(a->data, b->data, a->len, b->len);
-		ret->len = a->len + b->len;
-	}
+	ft_memcpy(ret.data, a.data, a.len);
+	ft_memcpy(ret.data + a.len, b.data, b.len);
+	ret.len = a.len + b.len;
 	return (ret);
 }

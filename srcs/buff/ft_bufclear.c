@@ -6,19 +6,15 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 07:58:18 by bguyot            #+#    #+#             */
-/*   Updated: 2024/11/21 05:52:09 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/25 13:37:52 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_buff.h"
 
-void	ft_bufclear(void *buf)
+void	ft_bufclear(t_buff buf)
 {
-	if (!buf)
-		return ;
-	if (((t_buff *) buf)->data)
-		free(((t_buff *) buf)->data);
-	((t_buff *) buf)->data = NULL;
-	((t_buff *) buf)->len = 0;
-	free(buf);
+	free(buf.data);
+	buf.data = NULL;
+	buf.len = 0;
 }
