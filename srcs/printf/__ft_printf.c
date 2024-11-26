@@ -6,19 +6,35 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:11:54 by yyyyyy            #+#    #+#             */
-/*   Updated: 2024/11/25 14:01:41 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/26 06:04:54 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "__ft_printf.h"
 
 static
-int	parse_arg(char *format, va_list ap, t_buff *buff)
+size_t	parse_argindex(char *format, int *arg_index, int current_index)
 {
-	return (1);
-	(void) format;
-	(void) ap;
-	(void) buff;
+	size_t	len;
+
+	len = 0;
+	while (ft_isdigit(format[len]))
+	{
+		*arg_index = *arg_index * 10 + format[len] - '0';
+		len++;
+	}
+}
+
+static
+size_t	parse_arg(char *format, va_list ap, t_buff *buff)
+{
+	t_conversion	conv;
+	size_t			len;
+
+	len = 1;
+	conv = (t_conversion){0};
+	len += parse_argindex(format + len, &conv.arg_index, 0);
+	return (len);
 }
 
 static
