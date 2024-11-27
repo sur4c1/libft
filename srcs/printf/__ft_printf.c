@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:11:54 by yyyyyy            #+#    #+#             */
-/*   Updated: 2024/11/26 06:33:44 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/11/26 06:47:45 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,24 @@ size_t	parse_arg(char *format, va_list ap, t_buff *buff)
 {
 	size_t	len;
 	str		string;
+	char	c;
 
 	len = 1;
-	if (ft_strcmp(format, "%s") == 0)
+	if (ft_strncmp(format, "%s", 2) == 0)
 	{
 		string = va_arg(ap, str);
 		*buff = ft_bufcat(*buff, (t_buff) {string, ft_strlen(string)});
+		return (2);
+	}
+	else if (ft_strncmp(format, "%%", 2) == 0)
+	{
+		*buff = ft_bufcat(*buff, (t_buff) {"%", 1});
+		return (2);
+	}
+	else if (ft_strncmp(format, "%c", 2) == 0)
+	{
+		c = va_arg(ap, int);
+		*buff = ft_bufcat(*buff, (t_buff) {&c, 1});
 		return (2);
 	}
 	return (len);
