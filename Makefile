@@ -6,7 +6,7 @@
 #    By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:24:40 by bguyot            #+#    #+#              #
-#    Updated: 2024/11/25 13:15:05 by yyyyyy           ###   ########.fr        #
+#    Updated: 2024/12/17 18:39:40 by yyyyyy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,7 @@ OBJS 			=	$(addprefix $(OBJDIR), $(addsuffix .o, $(SRCS)))
 
 CC				=	@gcc
 RM				=	@rm -rf
+SH				=	@bash
 CFLAGS			=	-Wall -Wextra -Werror -I $(INCDIR) -g3
 
 OBJ_COLOR		=	"\e[38;5;147m"
@@ -109,6 +110,9 @@ fclean: clean
 	@printf $(CLN_COLOR)"\tclean "$(NAME)" binary\t\t[ ✓ ]\n\e[0m"
 
 re: fclean all
+
+test: all
+	@$(SH) ./test/test.sh
 
 echo:
 	@echo $(OBJS)

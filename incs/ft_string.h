@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_string.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 08:26:05 by bguyot            #+#    #+#             */
-/*   Updated: 2022/12/02 16:35:06 by bguyot           ###   ########.fr       */
+/*   Updated: 2024/12/17 17:28:36 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 /* Return the address of the first occurence of c in the string pointed by s */
 char	*ft_strchr(const char *s, int c);
+
+/**
+ * @return The address of the first occurence of c in the string pointed by s
+ * or NULL if c is not found in the n first char of s
+ * @param s The string to search in
+ * @param c The char to search
+ * @param len The number of char to search in
+ */
+char	*ft_strnchr(const char *s, char c, size_t len);
 
 /* Return the address of the last occurence of c in the string pointed by s */
 char	*ft_strrchr(const char *s, int c);
