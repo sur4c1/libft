@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 09:25:13 by bguyot            #+#    #+#             */
-/*   Updated: 2024/12/19 15:09:02 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/12/19 15:24:50 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ char	*ft_gnl(int fd)
 	char			*next_line;
 
 	len = find_line_len(gnl.buff[fd], gnl.remainder);
-	next_line = ft_strndup(gnl.buff[fd], len);
+	next_line = NULL;
+	if (gnl.remainder)
+		next_line = ft_strndup(gnl.buff[fd], len);
 	if (len == (ssize_t) gnl.remainder)
 		return fill_next_line(fd, &gnl, next_line);
 	gnl.remainder -= len + 1;

@@ -6,7 +6,7 @@
 #    By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:24:40 by bguyot            #+#    #+#              #
-#    Updated: 2024/12/17 18:39:40 by yyyyyy           ###   ########.fr        #
+#    Updated: 2024/12/19 15:26:04 by yyyyyy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ FT_PUT			=	$(addprefix $(DIR_PUT)ft_, $(FILES_PUT))
 DIR_STRING		=	string/
 FILES_STRING	=	split	strchr	strcmp	strcontain	strdup	striteri		\
 					strjoin	strlcat	strlcpy	strlen	strmapi	strncmp	strndup		\
-					strnstr	strrchr	strtrim	substr	tabjoin	strgen
+					strnstr	strrchr	strnchr	strtrim	substr	tabjoin	strgen
 FT_STRING		=	$(addprefix $(DIR_STRING)ft_, $(FILES_STRING))
 
 DIR_BUFF		=	buff/
@@ -60,7 +60,7 @@ FT_BUFF			=	$(addprefix $(DIR_BUFF)ft_, $(FILES_BUFF))
 
 DIR_GNL			=	gnl/
 FILES_GNL		=	gnl
-FT_GNL			=	$(addprefix $(DIR)ft_, $(FILES))
+FT_GNL			=	$(addprefix $(DIR_GNL)ft_, $(FILES_GNL))
 
 DIR_PRITNF		=	printf/
 FILES_PRINTF	=	ft_printf	__ft_printf
@@ -83,7 +83,7 @@ OBJS 			=	$(addprefix $(OBJDIR), $(addsuffix .o, $(SRCS)))
 CC				=	@gcc
 RM				=	@rm -rf
 SH				=	@bash
-CFLAGS			=	-Wall -Wextra -Werror -I $(INCDIR) -g3
+CFLAGS			=	-Wall -Wextra -Werror -I $(INCDIR) -g3 $(DEFINES)
 
 OBJ_COLOR		=	"\e[38;5;147m"
 CLN_COLOR		=	"\e[38;5;124m"
