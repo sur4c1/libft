@@ -6,14 +6,14 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 09:25:13 by bguyot            #+#    #+#             */
-/*   Updated: 2024/12/17 18:36:56 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/12/19 15:09:02 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_gnl.h"
 
 static
-size_t	find_line_len(const char *buff, int reminder)
+size_t	find_line_len(const char *buff, size_t reminder)
 {
 	size_t	len;
 
@@ -41,7 +41,6 @@ static
 char *fill_next_line(int fd, _t_gnl *gnl, char *next_line)
 {
 	ssize_t	len;
-	size_t	bytes_to_cpy;
 	char	*new_line_ptr;
 
 	new_line_ptr = ft_strnchr(gnl->buff[fd], '\n', gnl->remainder);
@@ -73,7 +72,7 @@ char	*ft_gnl(int fd)
 
 	len = find_line_len(gnl.buff[fd], gnl.remainder);
 	next_line = ft_strndup(gnl.buff[fd], len);
-	if (len == gnl.remainder)
+	if (len == (ssize_t) gnl.remainder)
 		return fill_next_line(fd, &gnl, next_line);
 	gnl.remainder -= len + 1;
 	ft_memmove(gnl.buff[fd], gnl.buff[fd] + len + 1, gnl.remainder);

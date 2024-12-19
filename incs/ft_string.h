@@ -6,7 +6,7 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 08:26:05 by bguyot            #+#    #+#             */
-/*   Updated: 2024/12/17 17:28:36 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2024/12/19 15:12:23 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_strchr(const char *s, int c);
  * @param c The char to search
  * @param len The number of char to search in
  */
-char	*ft_strnchr(const char *s, char c, size_t len);
+char	*ft_strnchr(const char *s, int c, size_t len);
 
 /* Return the address of the last occurence of c in the string pointed by s */
 char	*ft_strrchr(const char *s, int c);
