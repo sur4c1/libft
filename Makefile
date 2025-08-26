@@ -6,7 +6,7 @@
 #    By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:24:40 by bguyot            #+#    #+#              #
-#    Updated: 2024/12/19 15:26:04 by yyyyyy           ###   ########.fr        #
+#    Updated: 2025/08/26 16:50:22 by yyyyyy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ FT_ARR			=	$(addprefix $(DIR_ARR)ft_, $(FILES_ARR))
 
 DIR_CAST		=	cast/
 FILES_CAST		=	tolower	toupper	atoi	itoa	utoa	utoa_base			\
-					ultoa_base	atobuf
+					ultoa_base	atobuf atou atol atos atous atoul
 FT_CAST			=	$(addprefix $(DIR_CAST)ft_, $(FILES_CAST))
 
 DIR_CHECK		=	check/

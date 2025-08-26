@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atous.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/23 13:21:21 by bguyot            #+#    #+#             */
-/*   Updated: 2025/08/26 16:50:56 by yyyyyy           ###   ########.fr       */
+/*   Created: 2025/08/26 16:37:45 by yyyyyy            #+#    #+#             */
+/*   Updated: 2025/08/26 16:54:55 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,24 @@
 #include "ft_def.h"
 #include "ft_types.h"
 
-int
-ft_atoi(const char *str)
+unsigned short
+ft_atous(const char *str)
 {
-	const char	*current;
-	int			 sign;
-	unsigned int value;
+	const char	  *current;
+	unsigned short value;
 
 	value = 0;
-	sign = 1;
 	current = str;
 	while (ft_isspace(*current))
 		current++;
-	while (*current == '+' || *current == '-')
-	{
-		if (*current == '-')
-			sign *= -1;
-		current++;
-	}
 	while (ft_isdigit(*current))
 	{
-		if (value > S32_MAX / 10
-			|| (value == S32_MAX / 10
-				&& *current - '0' > (S32_MAX % 10) + (1 - sign) / 2))
+		if (value > U16_MAX / 10
+			|| (value == U16_MAX / 10 && (u16) *current - '0' > (U16_MAX % 10)))
 			break;
 		value *= 10;
 		value += *current - '0';
 		current++;
 	}
-	return (sign * value);
+	return (value);
 }
