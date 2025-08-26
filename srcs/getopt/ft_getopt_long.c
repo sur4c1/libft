@@ -12,29 +12,26 @@
 
 #include "ft_getopt.h"
 
-char	*ft_optarg = NULL;
-int		ft_optind = 1;
-int		ft_optopt = 0;
-t_bool	ft_opterr = TRUE;
+char *ft_optarg = NULL;
+int ft_optind = 1;
+int ft_optopt = 0;
+t_bool ft_opterr = TRUE;
 
-static
-t_bool	is_option(str arg)
+static t_bool is_option(str arg)
 {
 	return arg[0] == '-' && ft_strcmp(arg, "-");
 }
 
-static
-void	swap_args(char *const argv[], int i, int j)
+static void swap_args(char *const argv[], int i, int j)
 {
-	char	*tmp;
+	char *tmp;
 
 	tmp = argv[i];
-	((char **) argv)[i] = argv[j];
-	((char **) argv)[j] = tmp;
+	((char **)argv)[i] = argv[j];
+	((char **)argv)[j] = tmp;
 }
 
-static
-void	move_front(char *const argv[], int elemind, int nb_put_to_left)
+static void move_front(char *const argv[], int elemind, int nb_put_to_left)
 {
 	while (elemind > nb_put_to_left + 1)
 	{
@@ -43,17 +40,15 @@ void	move_front(char *const argv[], int elemind, int nb_put_to_left)
 	}
 }
 
-static
-int		shortparse(
+static int shortparse(
 	int argc,
 	char *const argv[],
 	const char *optstring,
-	int *nextshrt
-)
+	int *nextshrt)
 {
-	int		optindex;
-	int		shrtindex;
-	char	*opt;
+	int optindex;
+	int shrtindex;
+	char *opt;
 
 	optindex = ft_optind;
 	shrtindex = (*nextshrt)++;
@@ -82,7 +77,7 @@ int		shortparse(
 			ft_optarg = argv[ft_optind];
 			ft_optind = optindex + 2;
 		}
-		else
+		else if (opt[2] != ':')
 		{
 			if (ft_opterr)
 				ft_printf("%s: option requires an argument -- %c\n", argv[0], argv[optindex][shrtindex]);
@@ -94,10 +89,9 @@ int		shortparse(
 	return argv[optindex][shrtindex];
 }
 
-static
-usz	ft_optlen(str opt)
+static usz ft_optlen(str opt)
 {
-	usz	i;
+	usz i;
 
 	i = 0;
 	while (opt[i] && opt[i] != '=')
@@ -105,16 +99,14 @@ usz	ft_optlen(str opt)
 	return i;
 }
 
-static
-const t_option	*longparse(
+static const t_option *longparse(
 	int argc,
-	char * const argv[],
+	char *const argv[],
 	const t_option *longopts,
-	int *longindex
-)
+	int *longindex)
 {
-	int		i;
-	char	*opt;
+	int i;
+	char *opt;
 
 	*longindex = -1;
 	opt = argv[ft_optind++] + 2;
@@ -165,18 +157,17 @@ const t_option	*longparse(
 	return longopts + *longindex;
 }
 
-int		ft_getopt_long(
+int ft_getopt_long(
 	int argc,
 	char *const argv[],
 	const char *optstring,
 	const t_option *longopts,
-	int *longindex
-)
+	int *longindex)
 {
-	const t_option	*longopt;
-	static int		nextshrt = 1;
-	static int		prevind = 0;
-	static int		nb_put_to_left = 0;
+	const t_option *longopt;
+	static int nextshrt = 1;
+	static int prevind = 0;
+	static int nb_put_to_left = 0;
 
 	ft_optarg = NULL;
 	if (prevind)
