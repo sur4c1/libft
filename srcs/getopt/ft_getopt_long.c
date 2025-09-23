@@ -61,7 +61,12 @@ static int shortparse(
 	if (!opt)
 	{
 		if (ft_opterr)
-			ft_printf("%s: invalid option -- %c\n", argv[0], argv[optindex][shrtindex]);
+		{
+			ft_putstr(argv[0]);
+			ft_putstr(": invalid option -- ");
+			ft_putchar(argv[optindex][shrtindex]);
+			ft_putchar('\n');
+		}
 		ft_optopt = argv[optindex][shrtindex];
 		return '?';
 	}
@@ -80,7 +85,12 @@ static int shortparse(
 		else if (opt[2] != ':')
 		{
 			if (ft_opterr)
-				ft_printf("%s: option requires an argument -- %c\n", argv[0], argv[optindex][shrtindex]);
+			{
+				ft_putstr(argv[0]);
+				ft_putstr(": option requires an argument -- ");
+				ft_putchar(argv[optindex][shrtindex]);
+				ft_putchar('\n');
+			}
 			ft_optopt = argv[optindex][shrtindex];
 			return '?';
 		}
@@ -123,7 +133,12 @@ static const t_option *longparse(
 			if (*longindex != -1)
 			{
 				if (ft_opterr)
-					ft_printf("%s: option '--%s' is ambiguous\n", argv[0], opt);
+				{
+					ft_putstr(argv[0]);
+					ft_putstr(": option '--");
+					ft_putstr(opt);
+					ft_putstr("' is ambiguous\n");
+				}
 				*longindex = 0;
 				return NULL;
 			}
@@ -134,13 +149,23 @@ static const t_option *longparse(
 	if (*longindex == -1)
 	{
 		if (ft_opterr)
-			ft_printf("%s: option '--%s' not recognized\n", argv[0], opt);
+		{
+			ft_putstr(argv[0]);
+			ft_putstr(": unrecognized option '--");
+			ft_putstr(opt);
+			ft_putstr("'\n");
+		}
 		*longindex = 0;
 		return NULL;
 	}
 	ft_optarg = ft_strchr(opt, '=');
 	if (ft_optarg && longopts[*longindex].has_arg == no_argument && ft_opterr)
-		ft_printf("%s: option '--%s' doesn't allow an argument\n", argv[0], opt);
+	{
+		ft_putstr(argv[0]);
+		ft_putstr(": option '--");
+		ft_putstr(opt);
+		ft_putstr("' doesn't allow an argument\n");
+	}
 	if (ft_optarg || longopts[*longindex].has_arg == no_argument)
 	{
 		if (ft_optarg)
@@ -150,7 +175,12 @@ static const t_option *longparse(
 	if (ft_optind >= argc)
 	{
 		if (ft_opterr)
-			ft_printf("%s: option '--%s' requires an argument\n", argv[0], opt);
+		{
+			ft_putstr(argv[0]);
+			ft_putstr(": option '--");
+			ft_putstr(opt);
+			ft_putstr("' requires an argument\n");
+		}
 		return longopts + *longindex;
 	}
 	ft_optarg = argv[ft_optind++];
