@@ -6,63 +6,132 @@
 /*   By: yyyyyy <yyyyyy@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:11:54 by yyyyyy            #+#    #+#             */
-/*   Updated: 2024/11/26 06:47:45 by yyyyyy           ###   ########.fr       */
+/*   Updated: 2025/09/23 17:26:21 by yyyyyy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// NOTE: this surely does NOT work uwu
+
+#ifdef ALLOW_MALLOC
 #include "__ft_printf.h"
 
-static
-size_t	parse_arg(char *format, va_list ap, t_buff *buff)
+static void init_token(char *format, char **token_start, t_token_type *token_type)
 {
-	size_t	len;
-	str		string;
-	char	c;
-
-	len = 1;
-	if (ft_strncmp(format, "%s", 2) == 0)
-	{
-		string = va_arg(ap, str);
-		*buff = ft_bufcat(*buff, (t_buff) {string, ft_strlen(string)});
-		return (2);
-	}
-	else if (ft_strncmp(format, "%%", 2) == 0)
-	{
-		*buff = ft_bufcat(*buff, (t_buff) {"%", 1});
-		return (2);
-	}
-	else if (ft_strncmp(format, "%c", 2) == 0)
-	{
-		c = va_arg(ap, int);
-		*buff = ft_bufcat(*buff, (t_buff) {&c, 1});
-		return (2);
-	}
-	return (len);
-	(void) ap;
-	(void) buff;
-	(void) format;
+	*token_start = format;
+	if (*format == '%')
+		*token_type = __TT_CONVERT;
+	else
+		*token_type = __TT_RAW;
 }
 
-static
-int	parse_str(char *format, t_buff *buff)
+static void save_raw(t_buff *buff, char *data, usz len)
 {
-	size_t	len;
+	t_buff raw_buff;
+	t_buff new_buff;
 
-	len = 0;
-	while (format[len] && format[len] != '%')
-		len++;
-	*buff = ft_bufcat(*buff, (t_buff) {format, len});
-	return (len);
+	raw_buff.data = data;
+	raw_buff.len = len;
+	new_buff = ft_bufcat(*buff, raw_buff);
+	ft_bufclear(*buff);
+	*buff = new_buff;
 }
 
-void	__ft_printf(char *format, va_list ap, t_buff *buff)
+static t_buff convert(va_list *arguments, char chartype, usz precision)
 {
+	switch (chartype)
+	{
+	case 'd':
+	case 'i':
+
+		break;
+
+	default:
+		break;
+	}
+}
+
+static void convert_arg(t_buff *buff, va_list *arguments, char *start)
+{
+	t_conversion conversion;
+	t_buff converted;
+
+	while (ft_strchr(__FLAGS, *start))
+	{
+		switch (*start)
+		{
+		case '-':
+			conversion.left_justify = TRUE;
+			break;
+		case '0':
+			conversion.zero_padding = TRUE;
+			break;
+		case '#':
+			conversion.alternate_form = TRUE;
+			break;
+		case ' ':
+			conversion.space_for_positive = TRUE;
+			break;
+		case '+':
+			conversion.always_sign = TRUE;
+			break;
+		default:
+			break;
+		}
+		start++;
+	}
+	conversion.minimal_width = 0;
+	while (ft_isdigit(*start))
+	{
+		conversion.minimal_width *= 10;
+		conversion.minimal_width += *start - '0';
+		start++;
+	}
+	conversion.precision = 0;
+	if (*start++ == '.')
+		while (ft_isdigit(*start))
+		{
+			conversion.precision *= 10;
+			conversion.precision += *start - '0';
+			start++;
+		}
+	while (!ft_strchr(__TYPES, *start))
+		start++;
+	converted = convert(arguments, *start, conversion.precision);
+	format(&converted, conversion);
+	freeing_bufcat(buff, converted);
+}
+
+void __ft_printf(char *format, va_list arguments, t_buff *buff)
+{
+	char *token_start;
+	t_token_type token_type;
+
 	while (*format)
 	{
-		if (*format == '%')
-			format += parse_arg(format, ap, buff);
-		else
-			format += parse_str(format, buff);
+		switch (token_type)
+		{
+		case __TT_UNKNOWN:
+			init_token(format, &token_start, &token_type);
+			continue;
+		case __TT_RAW:
+			if (*format == '%')
+			{
+				save_raw(buff, token_start, format - token_start);
+				token_type = __TT_UNKNOWN;
+				continue;
+			}
+			break;
+		case __TT_CONVERT:
+			if (ft_strchr(__TYPES, *format))
+			{
+				convert_arg(buff, &arguments, token_start);
+				token_type = __TT_UNKNOWN;
+			}
+			break;
+		}
+		format++;
 	}
-	(void) ap;
+	if (token_type == __TT_RAW)
+		save_raw(buff, token_start, format - token_start);
 }
+#endif
